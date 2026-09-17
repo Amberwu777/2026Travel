@@ -1,0 +1,115 @@
+import { SouvenirItem, PersonalMemo } from '../types';
+
+export const INITIAL_SOUVENIRS: SouvenirItem[] = [
+  {
+    id: 'souv-1',
+    name: '菠丹妮 Botanicus 死海泥手工皂',
+    recipient: '家人 / 自用',
+    quantity: '6 塊',
+    priceEstimate: '約 125 CZK / 塊',
+    cityOrStore: '布拉格 舊城提恩中庭專賣店',
+    note: '台灣專櫃 3~4 折，洗臉控油超推！滿 2,001 CZK 記得跟店員拿退稅單。',
+    completed: false,
+    createdAt: Date.now() - 86400000 * 3,
+  },
+  {
+    id: 'souv-2',
+    name: '酷喜樂 Koh-i-Noor 刺蝟彩色鉛筆',
+    recipient: '好友 / 姪子姪女',
+    quantity: '2 組',
+    priceEstimate: '約 650 CZK / 組',
+    cityOrStore: '庫倫洛夫 (CK小鎮) 專賣店',
+    note: '天然木頭刺蝟造型附插鉛筆，超精緻的捷克手工木工藝品！',
+    completed: false,
+    createdAt: Date.now() - 86400000 * 2,
+  },
+  {
+    id: 'souv-3',
+    name: '維也納小紅帽咖啡 (Julius Meinl) 咖啡豆',
+    recipient: '同事 / 辦公室分享',
+    quantity: '3 包',
+    priceEstimate: '約 7.5 EUR / 包',
+    cityOrStore: '維也納 BILLA / SPAR 超市',
+    note: '推薦經典金頂 (Jubiläum) 或 總裁 (Präsident) 咖啡豆，香醇不苦澀。',
+    completed: false,
+    createdAt: Date.now() - 86400000 * 1,
+  },
+  {
+    id: 'souv-4',
+    name: '莫札特巧克力 (Mirabell 金球圓盒)',
+    recipient: '部門同事伴手禮',
+    quantity: '4 盒',
+    priceEstimate: '約 6~9 EUR / 盒',
+    cityOrStore: '薩爾斯堡 / 維也納 超市',
+    note: '內餡為杏仁開心果膏與牛軋糖裹黑巧克力，超市買比觀光景點便宜許多。',
+    completed: false,
+    createdAt: Date.now(),
+  },
+  {
+    id: 'souv-5',
+    name: '卡羅維瓦利 溫泉杯 ＆ 溫泉餅 (Kolonáda)',
+    recipient: '爸媽',
+    quantity: '1 個杯 + 2 盒餅',
+    priceEstimate: '杯約 180 CZK / 餅約 65 CZK',
+    cityOrStore: '卡羅維瓦利 (KV) 溫泉迴廊',
+    note: '用瓷壺扁形吸嘴喝熱溫泉水超有儀式感；榛果巧克力口味溫泉餅必買！',
+    completed: false,
+    createdAt: Date.now() + 1000,
+  },
+];
+
+export const SOUVENIR_QUICK_INSPIRATIONS = [
+  { name: '菠丹妮 玫瑰臉部精華純露', city: '布拉格', price: '約 390 CZK', tag: '護膚必買' },
+  { name: '曼菲蘿 Manufaktura 啤酒花洗髮精', city: '布拉格', price: '約 199 CZK', tag: '捷克名品' },
+  { name: 'Manner 奧地利榛果威化餅 (粉紅包裝)', city: '維也納/超市', price: '約 3.5 EUR', tag: '送禮首選' },
+  { name: '哈修塔特/聖沃夫岡 白金鹽礦食用鹽', city: '湖區小鎮', price: '約 4.5 EUR', tag: '在地天然' },
+  { name: '施華洛世奇 (Swarovski) 水晶飾品', city: '維也納旗艦店', price: '退稅後約7折', tag: '精品保證' },
+  { name: '庫倫洛夫 刺蝟七彩魔術色彩筆 (Magic Pen)', city: '庫倫洛夫', price: '約 45 CZK/支', tag: '文具必收' },
+  { name: '莫札特酒 (Mozart Chocolate Liqueur)', city: '薩爾斯堡/超市', price: '約 14 EUR', tag: '濃醇酒香' },
+  { name: '捷克水晶銼刀 (精緻手繪水鑽款)', city: '布拉格/KV', price: '約 70~120 CZK', tag: '輕巧好送' },
+];
+
+export const INITIAL_MEMOS: PersonalMemo[] = [
+  {
+    id: 'memo-1',
+    title: '📌 領隊重要叮嚀與集合守則',
+    content: '1. 每天早上遊覽車出發前 10 分鐘大廳集合放置大行李。\n2. 歐洲車廂全面禁帶熱湯與無蓋杯，下車務必隨身帶走護照、錢包與貴重藥品。\n3. 人潮擁擠處（如布拉格天文鐘整點、查理大橋）隨身小包背在胸前防扒手。',
+    tag: '重要交代',
+    isPinned: true,
+    updatedAt: '2026/09/19 14:00',
+  },
+  {
+    id: 'memo-2',
+    title: '🔑 住宿 WiFi 與隨身用具備忘',
+    content: '1. 布拉格 Grandior 飯店密碼詢問櫃檯（全館免費 WiFi）。\n2. 奧捷自來水冷水皆為阿爾卑斯山水質可生飲（但水龍頭切記不要轉到熱水端生飲）。\n3. 歐洲飯店講求環保無提供一次性牙刷刮鬍刀，隨身洗漱包已備妥。',
+    tag: '飯店備忘',
+    isPinned: true,
+    updatedAt: '2026/09/20 09:30',
+  },
+  {
+    id: 'memo-3',
+    title: '🧾 奧捷退稅門檻與單據保存提醒',
+    content: '1. 捷克：同一天同一商店單筆滿 2,001 CZK 可退稅。\n2. 奧地利：同一天同一商店單筆滿 75.01 EUR 可退稅。\n3. 結帳時出示護照或手機護照照片填寫 Tax Free 單。\n4. 退稅單正本跟發票釘在一起放進專屬夾鏈袋，托運行李與手提退稅分開裝好。',
+    tag: '購物退稅',
+    isPinned: false,
+    updatedAt: '2026/09/21 16:15',
+  },
+  {
+    id: 'memo-4',
+    title: '🗺️ 自由活動個人私房口袋景點',
+    content: '布拉格查理大橋清晨 06:30 晨光無人空景攝影。\n高堡區 (Vyšehrad) 俯瞰伏爾塔瓦河遠眺紅屋頂。\n維也納中央咖啡館 (Café Central) 點杯 Melange 咖啡配沙河蛋糕 (Sachertorte)。',
+    tag: '私房清單',
+    isPinned: false,
+    updatedAt: '2026/09/22 11:20',
+  },
+];
+
+export const MEMO_TAG_OPTIONS = [
+  '重要交代',
+  '飯店備忘',
+  '購物退稅',
+  '私房清單',
+  '行李隨身',
+  '花費備忘',
+  '心情筆記',
+];
