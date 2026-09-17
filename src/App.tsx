@@ -30,6 +30,7 @@ import { DailyCarryModal } from './components/DailyCarryModal';
 import { BottomNav, MainTabType } from './components/BottomNav';
 import { DualClock } from './components/DualClock';
 import { LineHeaderButton } from './components/LineGroupButton';
+import appIcon from './assets/images/app-icon.png';
 
 export default function App() {
   const [activeMainTab, setActiveMainTab] = useState<MainTabType>('itinerary');
@@ -77,7 +78,7 @@ export default function App() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <img
-                src="/app-icon.jpg"
+                src={appIcon}
                 alt="奧捷12日 App 圖示"
                 className="w-10 h-10 rounded-xl object-cover shadow-xs border border-[#E8DFCFC0] shrink-0"
                 referrerPolicy="no-referrer"

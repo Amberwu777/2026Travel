@@ -2,19 +2,25 @@
   "name": "奧地利捷克12日漫遊小助手",
   "short_name": "奧捷12日",
   "description": "吉光旅遊奧地利捷克湖區典藏12日手機隨行手冊",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#FAF9F6",
   "theme_color": "#FAF9F5",
   "icons": [
     {
-      "src": "/app-icon.jpg",
+      "src": "./app-icon.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.png",
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./favicon.png",
       "sizes": "192x192",
       "type": "image/png"
     }
