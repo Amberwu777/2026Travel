@@ -2,5 +2,7 @@
   "name": "奧地利捷克12日漫遊小助手",
   "description": "吉光旅遊奧地利捷克湖區典藏12日手機隨行手冊，包含每日景點、餐廳、交通分類卡片、一鍵導航、即時天氣、每日穿搭、導遊私房攻略與記帳工具",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

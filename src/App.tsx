@@ -75,18 +75,26 @@ export default function App() {
         {/* Sticky App Header */}
         <header id="main-header" className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8E2D6] px-4 pt-3 pb-2.5">
           <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] tracking-widest font-semibold text-[#8C5D38] uppercase bg-[#F3ECE3] px-2 py-0.5 rounded">
-                  吉光旅遊 典藏行程
-                </span>
-                <span className="text-[10px] text-[#7A7167] font-mono">
-                  2026/09/19 - 09/30
-                </span>
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/app-icon.jpg"
+                alt="奧捷12日 App 圖示"
+                className="w-10 h-10 rounded-xl object-cover shadow-xs border border-[#E8DFCFC0] shrink-0"
+                referrerPolicy="no-referrer"
+              />
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] tracking-widest font-semibold text-[#8C5D38] uppercase bg-[#F3ECE3] px-2 py-0.5 rounded">
+                    吉光旅遊 典藏行程
+                  </span>
+                  <span className="text-[10px] text-[#7A7167] font-mono">
+                    2026/09/19 - 09/30
+                  </span>
+                </div>
+                <h1 className="text-lg font-bold tracking-tight text-[#22201F] mt-0.5 flex items-center gap-1.5 font-['Zen_Old_Mincho',serif]">
+                  奧地利．捷克湖區 12日
+                </h1>
               </div>
-              <h1 className="text-lg font-bold tracking-tight text-[#22201F] mt-0.5 flex items-center gap-1.5 font-['Zen_Old_Mincho',serif]">
-                奧地利．捷克湖區 12日
-              </h1>
             </div>
 
             <div className="flex items-center gap-1.5">
