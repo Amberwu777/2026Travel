@@ -27,10 +27,10 @@ export const LineHeaderButton: React.FC<LineHeaderButtonProps> = ({ className = 
       target="_blank"
       rel="noopener noreferrer"
       title="外開加入 LINE 旅遊群組"
-      className={`px-2.5 py-1.5 rounded-xl bg-[#06C755] text-white hover:bg-[#05B34C] active:scale-95 transition-all text-xs font-bold flex items-center gap-1 shadow-xs ${className}`}
+      aria-label="外開加入 LINE 旅遊群組"
+      className={`p-2 rounded-xl bg-[#06C755] text-white hover:bg-[#05B34C] active:scale-95 transition-all flex items-center justify-center shadow-xs ${className}`}
     >
-      <LineIcon className="w-3.5 h-3.5 text-white" />
-      <span className="text-[11px] font-bold">LINE群</span>
+      <LineIcon className="w-4 h-4 text-white" />
     </a>
   );
 };

@@ -1,11 +1,11 @@
-// Google Maps Shared List: "2026奧捷🇦🇹🇨🇿家旅" (89 Locations)
-// Origin: https://maps.app.goo.gl/nPVaqnrAPjfUJ9nR6
+// Google Maps Shared List: "2026奧捷🇦🇹🇨🇿家旅"
+// Origin: https://maps.app.goo.gl/ssoZCbstUkmeKpK56
 
 export interface GoogleMapsPlace {
   id: string;
   originalIndex: number;
   title: string;
-  category: "spot" | "food" | "hotel";
+  category: "spot" | "food" | "shopping" | "hotel";
   subCategory: string;
   city: string;
   userNote?: string;
@@ -16,7 +16,7 @@ export interface GoogleMapsPlace {
   mapsUrl: string;
 }
 
-export const GOOGLE_MAPS_SOURCE_URL = "https://maps.app.goo.gl/nPVaqnrAPjfUJ9nR6";
+export const GOOGLE_MAPS_SOURCE_URL = "https://maps.app.goo.gl/ssoZCbstUkmeKpK56";
 
 export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
   {
@@ -64,21 +64,22 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-4",
     "originalIndex": 4,
     "title": "黑死病紀念柱",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "格拉本精品大道",
     "city": "維也納 Wien",
     "fullAddress": "黑死病紀念柱 Graben 28, 1010 Wien, 奧地利",
     "shortAddress": "Graben 28, 1010 Wien, 奧地利",
     "lat": 48.2087219,
     "lng": 16.369807299999998,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E9%BB%91%E6%AD%BB%E7%97%85%E7%B4%80%E5%BF%B5%E6%9F%B1%20Graben%2028%2C%201010%20Wien%2C%20%E5%A5%A7%E5%9C%B0%E5%88%A9"
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E9%BB%91%E6%AD%BB%E7%97%85%E7%B4%80%E5%BF%B5%E6%9F%B1%20Graben%2028%2C%201010%20Wien%2C%20%E5%A5%A7%E5%9C%B0%E5%88%A9",
+    "userNote": "維也納格拉本大道 (Graben) 精品名店、退稅購物與紀念品"
   },
   {
     "id": "gmap-5",
     "originalIndex": 5,
     "title": "San Carlo Mala Strana",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "food",
+    "subCategory": "拿坡里披薩美饌",
     "city": "布拉格 Prague",
     "fullAddress": "San Carlo Mala Strana, Tržiště 369/7, 118 00 Malá Strana, 捷克",
     "shortAddress": "Tržiště 369/7, 118 00 Malá Strana, 捷克",
@@ -103,8 +104,8 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-7",
     "originalIndex": 7,
     "title": "Venue",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "food",
+    "subCategory": "特色早午餐",
     "city": "布拉格 Prague",
     "fullAddress": "Venue",
     "shortAddress": "",
@@ -222,8 +223,8 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-16",
     "originalIndex": 16,
     "title": "Lokál Dlouhááá",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "food",
+    "subCategory": "捷克傳統啤酒館",
     "city": "布拉格 Prague",
     "fullAddress": "Lokál Dlouhááá, Dlouhá 33, 110 00 Staré Město, 捷克",
     "shortAddress": "Dlouhá 33, 110 00 Staré Město, 捷克",
@@ -453,14 +454,15 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-33",
     "originalIndex": 33,
     "title": "BILLA",
-    "category": "food",
-    "subCategory": "超市伴手禮",
+    "category": "shopping",
+    "subCategory": "奧地利連鎖超市",
     "city": "維也納 Wien",
     "fullAddress": "BILLA, Schauflergasse 2, Herrengasse 1-3, 1010 Wien, 奧地利",
     "shortAddress": "Schauflergasse 2, Herrengasse 1-3, 1010 Wien, 奧地利",
     "lat": 48.208309,
     "lng": 16.366272,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BILLA%20Schauflergasse%202%2C%20Herrengasse%201-3%2C%201010%20Wien%2C%20%E5%A5%A7%E5%9C%B0%E5%88%A9"
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BILLA%20Schauflergasse%202%2C%20Herrengasse%201-3%2C%201010%20Wien%2C%20%E5%A5%A7%E5%9C%B0%E5%88%A9",
+    "userNote": "伴手禮採買：莫札特巧克力、Manner威化餅、果乾零食"
   },
   {
     "id": "gmap-34",
@@ -587,10 +589,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-43",
     "originalIndex": 43,
     "title": "莫扎特出生地",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "糧食胡同購物街",
     "city": "薩爾茲堡 Salzburg",
-    "userNote": "Day9",
+    "userNote": "Day9 薩爾茲堡最美鑄鐵招牌街、Café Fürst 正宗元祖莫札特巧克力專賣",
     "fullAddress": "莫扎特出生地",
     "shortAddress": "",
     "lat": 47.8000079,
@@ -657,10 +659,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-48",
     "originalIndex": 48,
     "title": "契斯基庫倫隆",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "CK老城工藝街",
     "city": "庫倫洛夫 Český Krumlov",
-    "userNote": "Day6 CK小鎮",
+    "userNote": "Day6 刺蝟彩色鉛筆 (Koh-i-noor)、波希米亞木偶、手工香皂",
     "fullAddress": "381 01 Český Krumlov 1, 捷克",
     "shortAddress": "",
     "lat": 48.8127354,
@@ -727,10 +729,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-53",
     "originalIndex": 53,
     "title": "哈爾施塔特",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "湖畔手作市集",
     "city": "哈修塔特 Hallstatt",
-    "userNote": "Day7",
+    "userNote": "Day7 湖區天然純淨岩鹽、沐浴鹽、精美手作木雕紀念品",
     "fullAddress": "奧地利哈爾施塔特",
     "shortAddress": "奧地利",
     "lat": 47.5622342,
@@ -741,10 +743,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-54",
     "originalIndex": 54,
     "title": "Zacharias of Hradec Square",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "古鎮市集廣場",
     "city": "帖契 Telč",
-    "userNote": "Day2",
+    "userNote": "Day2 帖契彩色山形牆市集廣場與特色紀念品店",
     "fullAddress": "Zacharias of Hradec Square",
     "shortAddress": "",
     "lat": 49.1841698,
@@ -755,10 +757,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-55",
     "originalIndex": 55,
     "title": "卡羅維瓦利",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "溫泉街特色採買",
     "city": "卡羅維瓦利 Karlovy Vary",
-    "userNote": "Day5",
+    "userNote": "Day5 必買彩繪溫泉杯、現烤溫泉薄餅、水晶指甲銼刀伴手禮",
     "fullAddress": "捷克",
     "shortAddress": "",
     "lat": 50.2318521,
@@ -853,10 +855,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-62",
     "originalIndex": 62,
     "title": "瑪麗亞溫泉市",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "溫泉迴廊商店街",
     "city": "瑪麗亞溫泉 Mariánské Lázně",
-    "userNote": "Day5",
+    "userNote": "Day5 溫泉薄餅禮盒、草本溫泉化妝品專賣",
     "fullAddress": "353 01 Mariánské Lázně 1, 捷克",
     "shortAddress": "",
     "lat": 49.964598599999995,
@@ -867,10 +869,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-63",
     "originalIndex": 63,
     "title": "Staroměstské nám.",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "老城廣場商圈",
     "city": "布拉格 Prague",
-    "userNote": "Day3",
+    "userNote": "Day3 捷克必買菠丹妮 (Botanicus) 總店、蔓菲蘿 (Manufaktura) 近在咫尺",
     "fullAddress": "110 00捷克布拉格",
     "shortAddress": "",
     "lat": 50.087468199999996,
@@ -923,10 +925,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-67",
     "originalIndex": 67,
     "title": "Golden Lane",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "shopping",
+    "subCategory": "城堡工藝伴手禮街",
     "city": "布拉格 Prague",
-    "userNote": "Day3 含門票",
+    "userNote": "Day3 卡夫卡故居旁彩色小屋，特色錫兵、書籤、波希米亞手工藝品",
     "fullAddress": "Golden Lane",
     "shortAddress": "",
     "lat": 50.092049499999995,
@@ -1090,10 +1092,10 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "id": "gmap-79",
     "originalIndex": 79,
     "title": "Crème de la Crème",
-    "category": "spot",
-    "subCategory": "地標景點巡禮",
+    "category": "food",
+    "subCategory": "義式手工冰淇淋",
     "city": "布拉格 Prague",
-    "userNote": "開心果、芒果口味",
+    "userNote": "布拉格排隊神店！開心果、芒果口味必點推薦",
     "fullAddress": "Crème de la Crème, 12, Husova 231, Staré Město, 110 00捷克",
     "shortAddress": "12, Husova 231, Staré Město, 110 00捷克",
     "lat": 50.085801599999996,

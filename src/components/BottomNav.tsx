@@ -1,7 +1,7 @@
 import React from 'react';
-import { Calendar, MapPin, BookOpen, Info, Wallet, PenLine } from 'lucide-react';
+import { Calendar, BookOpen, Info, Wallet, PenLine } from 'lucide-react';
 
-export type MainTabType = 'itinerary' | 'mapsList' | 'guide' | 'notes' | 'travelInfo' | 'budget';
+export type MainTabType = 'itinerary' | 'guide' | 'notes' | 'travelInfo' | 'budget';
 
 interface BottomNavProps {
   activeTab: MainTabType;
@@ -11,7 +11,6 @@ interface BottomNavProps {
 export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onChangeTab }) => {
   const tabs = [
     { id: 'itinerary' as MainTabType, label: '行程', icon: Calendar },
-    { id: 'mapsList' as MainTabType, label: '景點', icon: MapPin },
     { id: 'guide' as MainTabType, label: '攻略', icon: BookOpen },
     { id: 'notes' as MainTabType, label: '筆記', icon: PenLine },
     { id: 'travelInfo' as MainTabType, label: '手冊', icon: Info },

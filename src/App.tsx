@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Compass, 
   MapPin, 
-  Phone, 
   ChevronRight, 
   Filter, 
   Utensils, 
@@ -12,10 +11,10 @@ import {
   Calendar,
   Share2,
   Check,
-  Backpack
+  ExternalLink,
+  CheckSquare
 } from 'lucide-react';
 import { ITINERARY_DAYS } from './data/itineraryData';
-import { DAILY_CARRY_PLANS } from './data/dailyCarryData';
 import { CardCategory } from './types';
 import { DaySelector } from './components/DaySelector';
 import { WeatherCard } from './components/WeatherCard';
@@ -24,7 +23,6 @@ import { ItineraryCardItem } from './components/ItineraryCardItem';
 import { TravelInfoView } from './components/TravelInfoView';
 import { BudgetView } from './components/BudgetView';
 import { GuideHubView } from './components/GuideHubView';
-import { GoogleMapsListView } from './components/GoogleMapsListView';
 import { NotesAndSouvenirsView } from './components/NotesAndSouvenirsView';
 import { DailyCarryModal } from './components/DailyCarryModal';
 import { BottomNav, MainTabType } from './components/BottomNav';
@@ -40,7 +38,6 @@ export default function App() {
   const [isDailyCarryOpen, setIsDailyCarryOpen] = useState(false);
 
   const currentDayData = ITINERARY_DAYS.find((d) => d.dayNumber === selectedDay) || ITINERARY_DAYS[0];
-  const todayCarryPlan = DAILY_CARRY_PLANS[selectedDay];
 
   // Filter cards for the day
   const displayedCards = currentDayData.cards.filter((c) => {
@@ -85,30 +82,21 @@ export default function App() {
               />
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] tracking-widest font-semibold text-[#8C5D38] uppercase bg-[#F3ECE3] px-2 py-0.5 rounded">
-                    吉光旅遊 典藏行程
+                  <span className="text-[10px] tracking-widest font-semibold text-[#8C5D38] uppercase bg-[#F3ECE3] px-1.5 py-0.5 rounded whitespace-nowrap">
+                    吉光旅遊
                   </span>
-                  <span className="text-[10px] text-[#7A7167] font-mono">
+                  <span className="text-[10px] text-[#7A7167] font-mono whitespace-nowrap">
                     2026/09/19 - 09/30
                   </span>
                 </div>
                 <h1 className="text-lg font-bold tracking-tight text-[#22201F] mt-0.5 flex items-center gap-1.5 font-['Zen_Old_Mincho',serif]">
-                  奧地利．捷克湖區 12日
+                  奧地利．捷克 12日
                 </h1>
               </div>
             </div>
 
             <div className="flex items-center gap-1.5">
               <LineHeaderButton />
-
-              <a
-                href="tel:+886921450066"
-                title="緊急聯絡領隊張智惠"
-                className="p-2 rounded-xl bg-[#F0EBE1] text-[#4A433A] hover:bg-[#E5DFD4] transition-colors text-xs flex items-center gap-1"
-              >
-                <Phone className="w-3.5 h-3.5 text-[#8C5D38]" />
-                <span className="hidden sm:inline text-[11px] font-medium">領隊</span>
-              </a>
 
               <button
                 onClick={handleShareApp}
@@ -136,7 +124,7 @@ export default function App() {
               <div className="px-4 space-y-3.5">
                 {/* Day Header Banner */}
                 <div className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-4 shadow-sm">
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#2C2A29] text-[#FAF8F5]">
@@ -153,11 +141,11 @@ export default function App() {
 
                     <button
                       onClick={() => setIsDailyCarryOpen(true)}
-                      className="flex items-center gap-1 text-[11px] font-bold px-2.5 py-1.5 rounded-xl bg-[#F0EBE1] text-[#7A4E2A] hover:bg-[#E5DFD4] transition-all border border-[#E3D8CA] active:scale-95 shrink-0 shadow-2xs"
-                      title="開啟今日隨身必帶清單"
+                      className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#F0EBE1] text-[#7A4E2A] hover:bg-[#E5DFD4] transition-all border border-[#E3D8CA] active:scale-95 shrink-0 shadow-2xs"
+                      title="開啟今日隨身檢查清單"
                     >
-                      <Backpack className="w-3.5 h-3.5 text-[#8C5D38]" />
-                      <span>每日必帶</span>
+                      <CheckSquare className="w-3.5 h-3.5 text-[#8C5D38]" />
+                      <span>檢查清單</span>
                     </button>
                   </div>
 
@@ -172,45 +160,19 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* Daily Carry Recommendation Banner */}
-                  {todayCarryPlan && (
-                    <button
-                      onClick={() => setIsDailyCarryOpen(true)}
-                      className="mt-3 w-full py-2 px-3 rounded-xl bg-[#F4EFE7] hover:bg-[#EAE2D6] active:scale-[0.99] text-[#2C2A29] text-xs font-semibold flex items-center justify-between transition-all border border-[#E5DACB] shadow-2xs"
-                    >
-                      <div className="flex items-center gap-2 text-left">
-                        <div className="w-7 h-7 rounded-lg bg-[#8C5D38] text-white flex items-center justify-center shrink-0 shadow-xs">
-                          <Backpack className="w-3.5 h-3.5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-1.5">
-                            <span className="font-bold text-[#2C2A29]">今日隨身必帶</span>
-                            <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#EAE2D5] text-[#756658] font-mono">
-                              {todayCarryPlan.items.length} 項活動推薦
-                            </span>
-                          </div>
-                          <p className="text-[10.5px] text-[#73685C] font-normal truncate max-w-[200px] sm:max-w-xs mt-0.5">
-                            活動：{todayCarryPlan.activities.map(a => a.label).join(' · ')}
-                          </p>
-                        </div>
-                      </div>
-                      <span className="text-[11px] bg-[#8C5D38] text-white px-2.5 py-1 rounded-lg font-medium shrink-0 ml-1 shadow-2xs">
-                        檢查清單 →
-                      </span>
-                    </button>
-                  )}
-
-                  {/* Shortcut to Google Maps 89 items pocket list */}
-                  <button
-                    onClick={() => setActiveMainTab('mapsList')}
-                    className="mt-2 w-full py-1.5 px-3 rounded-xl bg-[#F2EDE4] hover:bg-[#E9E2D7] active:scale-[0.99] text-[#4A433A] text-xs font-medium flex items-center justify-between transition-all border border-[#E5DFD4]"
+                  {/* Shortcut to Google Maps shared list */}
+                  <a
+                    href="https://maps.app.goo.gl/ssoZCbstUkmeKpK56"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 w-full py-2 px-3 rounded-xl bg-[#F2EDE4] hover:bg-[#E9E2D7] active:scale-[0.99] text-[#3D352E] text-xs font-semibold flex items-center justify-between transition-all border border-[#E5DFD4] shadow-2xs"
                   >
                     <span className="flex items-center gap-1.5">
                       <MapPin className="w-3.5 h-3.5 text-[#8C5D38]" />
-                      <span>查看「2026奧捷家旅」89 處景點＆美食口袋清單</span>
+                      <span>查看 Google Maps 分享清單（景點．美食．逛街）</span>
                     </span>
-                    <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-                  </button>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-60 text-[#8C5D38]" />
+                  </a>
                 </div>
 
                 {/* 1. 即時天氣資訊 (Weather Card) */}
@@ -342,12 +304,6 @@ export default function App() {
             </div>
           )}
 
-          {activeMainTab === 'mapsList' && (
-            <div className="px-4 pt-3">
-              <GoogleMapsListView onJumpToDay={handleJumpToDayFromHub} />
-            </div>
-          )}
-
           {activeMainTab === 'guide' && (
             <div className="px-4 pt-3">
               <GuideHubView 
@@ -376,7 +332,7 @@ export default function App() {
           )}
         </main>
 
-        {/* Daily Carry Modal */}
+        {/* Daily Carry Checklist Modal */}
         <DailyCarryModal 
           isOpen={isDailyCarryOpen} 
           onClose={() => setIsDailyCarryOpen(false)} 
