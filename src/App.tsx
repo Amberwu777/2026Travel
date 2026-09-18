@@ -117,10 +117,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F5F3EF] text-[#2C2A29] flex flex-col items-center">
       {/* Mobile-First Frame Container (Max Width centered for tablet/desktop) */}
-      <div className="w-full max-w-md min-h-screen bg-[#FAF9F6] shadow-xl flex flex-col relative border-x border-[#EAE4DC]">
+      <div className="w-full max-w-md min-h-screen bg-[#FAF9F6] shadow-xl flex flex-col relative border-x border-[#EAE4DC] overflow-x-hidden">
         
         {/* Sticky App Header */}
-        <header id="main-header" className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8E2D6] px-4 pt-3 pb-2.5">
+        <header id="main-header" className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8E2D6] px-3.5 sm:px-4 pt-3 pb-2.5 w-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <img
