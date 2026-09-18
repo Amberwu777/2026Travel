@@ -1,7 +1,7 @@
 import React from 'react';
-import { Calendar, BookOpen, Info, Wallet, PenLine } from 'lucide-react';
+import { Calendar, Info, Wallet, PenLine } from 'lucide-react';
 
-export type MainTabType = 'itinerary' | 'guide' | 'notes' | 'travelInfo' | 'budget';
+export type MainTabType = 'itinerary' | 'notes' | 'travelInfo' | 'budget';
 
 interface BottomNavProps {
   activeTab: MainTabType;
@@ -10,8 +10,7 @@ interface BottomNavProps {
 
 export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onChangeTab }) => {
   const tabs = [
-    { id: 'itinerary' as MainTabType, label: '行程', icon: Calendar },
-    { id: 'guide' as MainTabType, label: '攻略', icon: BookOpen },
+    { id: 'itinerary' as MainTabType, label: '行程攻略', icon: Calendar },
     { id: 'notes' as MainTabType, label: '筆記', icon: PenLine },
     { id: 'travelInfo' as MainTabType, label: '手冊', icon: Info },
     { id: 'budget' as MainTabType, label: '記帳', icon: Wallet },
@@ -36,9 +35,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onChangeTab }) 
               }`}
             >
               <div className={`p-1 rounded-lg ${isActive ? 'bg-[#EFE9DF]' : 'bg-transparent'}`}>
-                <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${isActive ? 'text-[#2C2A29]' : 'text-[#877E74]'}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-[#2C2A29]' : 'text-[#877E74]'}`} />
               </div>
-              <span className={`text-[9.5px] sm:text-[10px] mt-0.5 font-medium whitespace-nowrap ${isActive ? 'text-[#2C2A29] font-bold' : 'text-[#877E74]'}`}>
+              <span className={`text-xs mt-0.5 font-medium whitespace-nowrap ${isActive ? 'text-[#2C2A29] font-bold' : 'text-[#877E74]'}`}>
                 {tab.label}
               </span>
             </button>

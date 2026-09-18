@@ -26,22 +26,22 @@ export const DualClock: React.FC = () => {
   }).format(time);
 
   return (
-    <div id="dual-clock-widget" className="bg-[#EFECE6] border border-[#E3DED5] rounded-xl px-3 py-2 flex items-center justify-between text-xs text-[#524E48] gap-2">
+    <div id="dual-clock-widget" className="bg-[#EFECE6] border border-[#E3DED5] rounded-xl px-3.5 py-2 flex items-center justify-between text-xs text-[#524E48] gap-2">
       <div className="flex items-center gap-1.5 shrink-0">
-        <Clock className="w-3.5 h-3.5 text-[#8C827A] shrink-0" />
-        <span className="font-medium text-[#2C2A29] whitespace-nowrap">時差同步</span>
-        <span className="text-[10px] text-[#78716A] bg-[#DFD9CE] px-1.5 py-0.5 rounded whitespace-nowrap">奧捷 -6hr</span>
+        <Clock className="w-4 h-4 text-[#8C827A] shrink-0" />
+        <span className="font-semibold text-[#2C2A29] whitespace-nowrap text-xs">時差同步</span>
+        <span className="text-[11px] text-[#78716A] bg-[#DFD9CE] px-1.5 py-0.5 rounded whitespace-nowrap">奧捷 -6hr</span>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-3 font-mono shrink-0">
         <div className="flex items-center gap-1">
-          <span className="text-[11px] text-[#6E675F] whitespace-nowrap">奧捷:</span>
-          <span className="font-semibold text-[#2C2A29]">{centralEuropeTime}</span>
+          <span className="text-xs text-[#6E675F] whitespace-nowrap">奧捷:</span>
+          <span className="font-bold text-[#2C2A29] text-sm">{centralEuropeTime}</span>
         </div>
-        <div className="w-[1px] h-3 bg-[#D4CDC3]"></div>
+        <div className="w-[1px] h-3.5 bg-[#D4CDC3]"></div>
         <div className="flex items-center gap-1">
-          <span className="text-[11px] text-[#6E675F] whitespace-nowrap">台北:</span>
-          <span className="font-semibold text-[#2C2A29]">{taipeiTime}</span>
+          <span className="text-xs text-[#6E675F] whitespace-nowrap">台北:</span>
+          <span className="font-bold text-[#2C2A29] text-sm">{taipeiTime}</span>
         </div>
       </div>
     </div>

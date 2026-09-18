@@ -39,14 +39,14 @@ export const DaySelector: React.FC<DaySelectorProps> = ({ selectedDay, onSelectD
               }`}
             >
               <div className="flex items-baseline gap-1">
-                <span className={`text-[11px] font-bold ${isActive ? 'text-[#FAF8F5]' : 'text-[#3E3933]'}`}>
+                <span className={`text-xs font-bold ${isActive ? 'text-[#FAF8F5]' : 'text-[#3E3933]'}`}>
                   Day {day.dayNumber}
                 </span>
-                <span className={`text-[10px] ${isActive ? 'text-[#D8D2C9]' : 'text-[#7D746A]'}`}>
+                <span className={`text-[11px] ${isActive ? 'text-[#D8D2C9]' : 'text-[#7D746A]'}`}>
                   {day.date}
                 </span>
               </div>
-              <span className={`text-[10px] truncate max-w-[70px] mt-0.5 ${
+              <span className={`text-[11px] truncate max-w-[80px] mt-0.5 ${
                 isActive ? 'text-[#C7BFB5]' : 'text-[#6E665D]'
               }`}>
                 {day.city.split('/')[0].trim()}

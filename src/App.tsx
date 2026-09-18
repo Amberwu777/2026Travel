@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Compass, 
   MapPin, 
@@ -12,7 +12,9 @@ import {
   Share2,
   Check,
   ExternalLink,
-  CheckSquare
+  CheckSquare,
+  Search,
+  X
 } from 'lucide-react';
 import { ITINERARY_DAYS } from './data/itineraryData';
 import { CardCategory } from './types';
@@ -22,7 +24,6 @@ import { OutfitCard } from './components/OutfitCard';
 import { ItineraryCardItem } from './components/ItineraryCardItem';
 import { TravelInfoView } from './components/TravelInfoView';
 import { BudgetView } from './components/BudgetView';
-import { GuideHubView } from './components/GuideHubView';
 import { NotesAndSouvenirsView } from './components/NotesAndSouvenirsView';
 import { DailyCarryModal } from './components/DailyCarryModal';
 import { BottomNav, MainTabType } from './components/BottomNav';
@@ -33,17 +34,70 @@ import appIcon from './assets/images/app-icon.png';
 export default function App() {
   const [activeMainTab, setActiveMainTab] = useState<MainTabType>('itinerary');
   const [selectedDay, setSelectedDay] = useState<number>(2); // Default to Day 2 (first active day in Europe)
-  const [selectedCategory, setSelectedCategory] = useState<CardCategory | 'all'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<CardCategory | 'all' | 'highlights'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [copiedShare, setCopiedShare] = useState(false);
   const [isDailyCarryOpen, setIsDailyCarryOpen] = useState(false);
 
   const currentDayData = ITINERARY_DAYS.find((d) => d.dayNumber === selectedDay) || ITINERARY_DAYS[0];
 
-  // Filter cards for the day
-  const displayedCards = currentDayData.cards.filter((c) => {
-    if (selectedCategory === 'all') return true;
-    return c.category === selectedCategory;
-  });
+  // Filter cards for the day based on category and search query
+  const displayedCards = useMemo(() => {
+    return currentDayData.cards.filter((c) => {
+      // Category filter
+      if (selectedCategory === 'highlights') {
+        const hasHighlights = (c.highlights?.mustEat && c.highlights.mustEat.length > 0) ||
+          (c.highlights?.mustOrder && c.highlights.mustOrder.length > 0) ||
+          (c.highlights?.mustBuy && c.highlights.mustBuy.length > 0) ||
+          Boolean(c.story);
+        if (!hasHighlights) return false;
+      } else if (selectedCategory !== 'all' && c.category !== selectedCategory) {
+        return false;
+      }
+
+      // Search query filter
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchTitle = c.title.toLowerCase().includes(q);
+        const matchSub = (c.subtitle || '').toLowerCase().includes(q);
+        const matchDesc = c.description.toLowerCase().includes(q);
+        const matchStory = (c.story || '').toLowerCase().includes(q);
+        const matchMustEat = (c.highlights?.mustEat || []).some(m => m.toLowerCase().includes(q));
+        const matchMustOrder = (c.highlights?.mustOrder || []).some(m => m.toLowerCase().includes(q));
+        const matchMustBuy = (c.highlights?.mustBuy || []).some(m => m.toLowerCase().includes(q));
+        return matchTitle || matchSub || matchDesc || matchStory || matchMustEat || matchMustOrder || matchMustBuy;
+      }
+
+      return true;
+    });
+  }, [currentDayData, selectedCategory, searchQuery]);
+
+  // Search matches across other days
+  const otherDayMatches = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const q = searchQuery.toLowerCase();
+    const results: { dayNumber: number; city: string; count: number }[] = [];
+
+    ITINERARY_DAYS.forEach((d) => {
+      if (d.dayNumber === selectedDay) return;
+      const matchingCount = d.cards.filter((c) => {
+        const matchTitle = c.title.toLowerCase().includes(q);
+        const matchSub = (c.subtitle || '').toLowerCase().includes(q);
+        const matchDesc = c.description.toLowerCase().includes(q);
+        const matchStory = (c.story || '').toLowerCase().includes(q);
+        const matchMustEat = (c.highlights?.mustEat || []).some(m => m.toLowerCase().includes(q));
+        const matchMustOrder = (c.highlights?.mustOrder || []).some(m => m.toLowerCase().includes(q));
+        const matchMustBuy = (c.highlights?.mustBuy || []).some(m => m.toLowerCase().includes(q));
+        return matchTitle || matchSub || matchDesc || matchStory || matchMustEat || matchMustOrder || matchMustBuy;
+      }).length;
+
+      if (matchingCount > 0) {
+        results.push({ dayNumber: d.dayNumber, city: d.city, count: matchingCount });
+      }
+    });
+
+    return results;
+  }, [searchQuery, selectedDay]);
 
   const handleShareApp = () => {
     if (navigator.share) {
@@ -58,11 +112,6 @@ export default function App() {
         setTimeout(() => setCopiedShare(false), 2000);
       });
     }
-  };
-
-  const handleJumpToDayFromHub = (day: number) => {
-    setSelectedDay(day);
-    setActiveMainTab('itinerary');
   };
 
   return (
@@ -175,18 +224,60 @@ export default function App() {
                   </a>
                 </div>
 
-                {/* 1. 即時天氣資訊 (Weather Card) */}
-                <WeatherCard weather={currentDayData.weather} />
+                {/* 1. 即時天氣資訊 (Weather Card - Auto live update via Open-Meteo) */}
+                <WeatherCard weather={currentDayData.weather} dayNumber={selectedDay} />
 
                 {/* 2. 每日穿搭指南 (Outfit Card - Situated right below weather as requested) */}
                 <OutfitCard outfit={currentDayData.outfit} />
 
-                {/* Category Filter Chips for Day Cards */}
-                <div className="flex items-center justify-between pt-1">
+                {/* Search & Category Filter Section */}
+                <div className="space-y-2 pt-1">
+                  {/* Search bar */}
+                  <div className="relative">
+                    <Search className="w-4 h-4 text-[#8C8276] absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      placeholder="搜尋景點、莫札特、伴手禮、必吃、生牛肉..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-9 pr-8 py-2 bg-[#F3EFE7] border border-[#E0D9CD] rounded-xl text-xs text-[#2C2A29] placeholder-[#948A7D] focus:outline-none focus:ring-1 focus:ring-[#8C5D38]"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[#8C8276] hover:text-[#2C2A29]"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Matches in other days */}
+                  {otherDayMatches.length > 0 && (
+                    <div className="bg-[#FAF6F0] border border-[#EAE0D2] rounded-xl p-2.5 text-xs text-[#6B5E4F]">
+                      <div className="font-semibold text-[#8C5D38] mb-1 flex items-center gap-1">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>其他天數也找到相關項目（點擊跳轉）：</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 pt-0.5">
+                        {otherDayMatches.map((m) => (
+                          <button
+                            key={m.dayNumber}
+                            onClick={() => setSelectedDay(m.dayNumber)}
+                            className="px-2 py-0.5 rounded-lg bg-[#EFE8DC] hover:bg-[#E2D6C5] text-[#4A433A] font-medium text-[11px] border border-[#E0D5C3] transition-all"
+                          >
+                            Day {m.dayNumber} {m.city.split('/')[0]} ({m.count}處)
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Category Filter Chips for Day Cards */}
                   <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
                     <button
                       onClick={() => setSelectedCategory('all')}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
                         selectedCategory === 'all'
                           ? 'bg-[#2C2A29] text-[#FAF8F5]'
                           : 'bg-[#EDE7DC] text-[#63594F] hover:bg-[#E2DBCF]'
@@ -195,8 +286,18 @@ export default function App() {
                       全部行程 ({currentDayData.cards.length})
                     </button>
                     <button
+                      onClick={() => setSelectedCategory('highlights')}
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
+                        selectedCategory === 'highlights'
+                          ? 'bg-[#8C5D38] text-[#FFFFFF]'
+                          : 'bg-[#EDE7DC] text-[#63594F] hover:bg-[#E2DBCF]'
+                      }`}
+                    >
+                      必吃・必買
+                    </button>
+                    <button
                       onClick={() => setSelectedCategory('spot')}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
                         selectedCategory === 'spot'
                           ? 'bg-[#356B48] text-[#FFFFFF]'
                           : 'bg-[#EDE7DC] text-[#63594F] hover:bg-[#E2DBCF]'
@@ -206,7 +307,7 @@ export default function App() {
                     </button>
                     <button
                       onClick={() => setSelectedCategory('restaurant')}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
                         selectedCategory === 'restaurant'
                           ? 'bg-[#B54D34] text-[#FFFFFF]'
                           : 'bg-[#EDE7DC] text-[#63594F] hover:bg-[#E2DBCF]'
@@ -216,7 +317,7 @@ export default function App() {
                     </button>
                     <button
                       onClick={() => setSelectedCategory('transport')}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
                         selectedCategory === 'transport'
                           ? 'bg-[#2F5E7D] text-[#FFFFFF]'
                           : 'bg-[#EDE7DC] text-[#63594F] hover:bg-[#E2DBCF]'
@@ -226,7 +327,7 @@ export default function App() {
                     </button>
                     <button
                       onClick={() => setSelectedCategory('hotel')}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
                         selectedCategory === 'hotel'
                           ? 'bg-[#7A5B36] text-[#FFFFFF]'
                           : 'bg-[#EDE7DC] text-[#63594F] hover:bg-[#E2DBCF]'
@@ -239,9 +340,15 @@ export default function App() {
 
                 {/* Cards List */}
                 <div className="space-y-3.5">
-                  {displayedCards.map((card) => (
-                    <ItineraryCardItem key={card.id} card={card} />
-                  ))}
+                  {displayedCards.length === 0 ? (
+                    <div className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-6 text-center text-xs text-[#8A8177]">
+                      此篩選條件下無項目，請嘗試清除搜尋或選擇其他分類。
+                    </div>
+                  ) : (
+                    displayedCards.map((card) => (
+                      <ItineraryCardItem key={card.id} card={card} />
+                    ))
+                  )}
                 </div>
 
                 {/* Day Meals & Lodging Summary Box */}
@@ -301,15 +408,6 @@ export default function App() {
                   </button>
                 </div>
               </div>
-            </div>
-          )}
-
-          {activeMainTab === 'guide' && (
-            <div className="px-4 pt-3">
-              <GuideHubView 
-                onJumpToDay={handleJumpToDayFromHub} 
-                onNavigateToNotes={() => setActiveMainTab('notes')}
-              />
             </div>
           )}
 

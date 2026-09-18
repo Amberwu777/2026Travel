@@ -20,9 +20,9 @@ export const DAILY_CARRY_PLANS: Record<number, DailyCarryPlan> = {
       },
       {
         id: 'd1-powerbank',
-        name: '行動電源（隨身手提，嚴禁託運）',
+        name: '行動電源（每人最多攜帶2顆・隨身手提嚴禁託運）',
         category: 'essential',
-        reason: '民航法規鋰電池一律隨身，飛行途中可充手機。',
+        reason: '民航法規鋰電池一律隨身手提，每人最多攜帶2顆（額定容量限100Wh以內），嚴禁放行李箱託運。',
         isMustHave: true,
       },
       {
@@ -533,9 +533,9 @@ export const DAILY_CARRY_PLANS: Record<number, DailyCarryPlan> = {
       },
       {
         id: 'd11-powerbank',
-        name: '行動電源（隨身帶上機，禁託運）',
+        name: '行動電源（每人最多攜帶2顆・隨身帶上機禁託運）',
         category: 'essential',
-        reason: '確保回程手機與拍照設備隨時有電。',
+        reason: '民航法規每人最多攜帶2顆隨身登機（100Wh以內），嚴禁放行李箱託運。',
         isMustHave: true,
       },
       {

@@ -31,6 +31,10 @@ export interface DayWeather {
   rainChance: string;
   icon: 'sun' | 'cloud' | 'rain' | 'fog' | 'partly-cloudy';
   advisory: string;
+  feelsLike?: string;
+  humidity?: string;
+  isLive?: boolean;
+  lastUpdated?: string;
 }
 
 export interface DayOutfit {
