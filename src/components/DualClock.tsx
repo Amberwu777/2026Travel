@@ -28,25 +28,27 @@ export const DualClock: React.FC = () => {
   return (
     <div 
       id="dual-clock-widget" 
-      className="bg-[#EFECE6] border border-[#E3DED5] rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 flex items-center justify-between text-xs text-[#524E48] gap-1.5 sm:gap-2 w-full max-w-full box-border"
+      className="bg-[#EFECE6] border border-[#E3DED5] rounded-xl px-3 py-1.5 flex items-center justify-between text-xs text-[#524E48] w-full box-border shadow-2xs overflow-hidden"
     >
+      {/* Left: Timezone difference tag */}
       <div className="flex items-center gap-1.5 shrink-0">
         <Clock className="w-3.5 h-3.5 text-[#8C827A] shrink-0" />
-        <span className="font-semibold text-[#2C2A29] whitespace-nowrap text-xs">時差</span>
-        <span className="text-[10.5px] text-[#78716A] bg-[#DFD9CE] px-1.5 py-0.5 rounded whitespace-nowrap font-medium">
+        <span className="font-semibold text-[#2C2A29] text-xs whitespace-nowrap">時差</span>
+        <span className="text-[10px] text-[#655E54] bg-[#DDD7CB] px-1.5 py-0.5 rounded font-medium whitespace-nowrap">
           奧捷 -6h
         </span>
       </div>
 
-      <div className="flex items-center gap-1.5 sm:gap-2.5 font-mono shrink-0 ml-auto">
-        <div className="flex items-center gap-1">
-          <span className="text-[11px] sm:text-xs text-[#6E675F] whitespace-nowrap">奧捷:</span>
-          <span className="font-bold text-[#2C2A29] text-xs sm:text-sm tracking-tight">{centralEuropeTime}</span>
+      {/* Right: Dual Times with guaranteed padding from right edge */}
+      <div className="flex items-center gap-2 sm:gap-2.5 font-mono shrink-0">
+        <div className="flex items-baseline gap-1">
+          <span className="text-[11px] text-[#78716A] font-sans whitespace-nowrap">奧捷</span>
+          <span className="font-bold text-[#2C2A29] text-xs sm:text-[13px] tracking-tight">{centralEuropeTime}</span>
         </div>
         <div className="w-[1px] h-3 bg-[#D4CDC3] shrink-0"></div>
-        <div className="flex items-center gap-1">
-          <span className="text-[11px] sm:text-xs text-[#6E675F] whitespace-nowrap">台北:</span>
-          <span className="font-bold text-[#2C2A29] text-xs sm:text-sm tracking-tight">{taipeiTime}</span>
+        <div className="flex items-baseline gap-1">
+          <span className="text-[11px] text-[#78716A] font-sans whitespace-nowrap">台北</span>
+          <span className="font-bold text-[#2C2A29] text-xs sm:text-[13px] tracking-tight">{taipeiTime}</span>
         </div>
       </div>
     </div>
