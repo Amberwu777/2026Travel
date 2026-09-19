@@ -254,19 +254,56 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* Shortcut to Google Maps shared list */}
-                  <a
-                    href="https://maps.app.goo.gl/ssoZCbstUkmeKpK56"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 w-full py-2 px-3 rounded-xl bg-[#F2EDE4] hover:bg-[#E9E2D7] active:scale-[0.99] text-[#3D352E] text-xs font-semibold flex items-center justify-between transition-all border border-[#E5DFD4] shadow-2xs"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-[#8C5D38]" />
-                      <span>查看 Google Maps 分享清單（景點．美食．逛街）</span>
-                    </span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-60 text-[#8C5D38]" />
-                  </a>
+                  {/* Day-specific Google Maps location pinpoints from user document */}
+                  {currentDayData.dayLocations && currentDayData.dayLocations.length > 0 ? (
+                    <div className="mt-2.5 pt-2 border-t border-[#EAE4D9] space-y-1.5">
+                      <div className="flex items-center justify-between text-[11px] font-semibold text-[#6A5E52]">
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-[#8C5D38]" />
+                          <span>當日景點定位點：</span>
+                        </span>
+                        <a
+                          href="https://maps.app.goo.gl/ssoZCbstUkmeKpK56"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[10.5px] text-[#8C5D38] hover:underline flex items-center gap-0.5 font-normal"
+                        >
+                          <span>80+處地圖總表</span>
+                          <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                        </a>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {currentDayData.dayLocations.map((loc, idx) => (
+                          <a
+                            key={idx}
+                            href={loc.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 min-w-[135px] py-2 px-3 rounded-xl bg-[#F0EAE0] hover:bg-[#E5DDCF] active:scale-[0.99] text-[#2C2A29] text-xs font-semibold flex items-center justify-between transition-all border border-[#DDD3C3] shadow-2xs"
+                          >
+                            <span className="flex items-center gap-1.5 truncate">
+                              <MapPin className="w-3.5 h-3.5 text-[#8C5D38] shrink-0" />
+                              <span className="truncate">{loc.name} 定位點</span>
+                            </span>
+                            <ExternalLink className="w-3 h-3 opacity-60 text-[#8C5D38] shrink-0 ml-1" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <a
+                      href="https://maps.app.goo.gl/ssoZCbstUkmeKpK56"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 w-full py-2 px-3 rounded-xl bg-[#F2EDE4] hover:bg-[#E9E2D7] active:scale-[0.99] text-[#3D352E] text-xs font-semibold flex items-center justify-between transition-all border border-[#E5DFD4] shadow-2xs"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-[#8C5D38]" />
+                        <span>查看 Google Maps 分享清單（景點．美食．逛街）</span>
+                      </span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 text-[#8C5D38]" />
+                    </a>
+                  )}
                 </div>
 
                 {/* 1. 即時天氣資訊 (Weather Card - Auto live update via Open-Meteo) */}

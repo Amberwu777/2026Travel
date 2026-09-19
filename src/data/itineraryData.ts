@@ -35,6 +35,10 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       wakeUpTime: '17:00',
       departureTime: '20:00 桃園機場第二航廈長榮櫃台集合',
     },
+    dayLocations: [
+      { name: '桃園機場第二航廈', url: 'https://maps.app.goo.gl/MvqREjMHAeJvAWSt8' },
+      { name: '維也納機場', url: 'https://maps.app.goo.gl/5uX3w8rnZY54m7pF8' },
+    ],
     cards: [
       {
         id: 'd1-airport-meeting',
@@ -104,6 +108,10 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '高支撐抗震健走鞋（布拉格石板路極需保護腳踝）',
       specialNotice: '查理大橋傍晚風勁，建議攜帶輕便防風圍巾。',
     },
+    dayLocations: [
+      { name: '帖契', url: 'https://maps.app.goo.gl/t7oiNWpeiao7DynQ7' },
+      { name: '理查大橋 (查理大橋)', url: 'https://maps.app.goo.gl/RnNBptQxQvgPLLTNA' },
+    ],
     cards: [
       {
         id: 'd2-telc',
@@ -228,6 +236,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '皮質平底鞋、雅痞休閒鞋或避震支撐皮鞋（切勿穿拖鞋、露趾涼鞋）',
       specialNotice: '※ 依米其林餐廳規定，請避免運動短褲、背心與拖鞋。參觀聖維特教堂請勿穿著露肩短裙。',
     },
+    dayLocations: [
+      { name: '黃金巷', url: 'https://maps.app.goo.gl/uoPj2mnUaJSTdD496' },
+    ],
     cards: [
       {
         id: 'd3-prague-castle',
@@ -379,6 +390,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '輕量透氣慢跑鞋或健走鞋',
       specialNotice: '攜帶斜背包並備隨身保溫瓶，今晚為領隊帶路自理餐，可品嚐巷弄私房美味！',
     },
+    dayLocations: [
+      { name: '伏爾塔瓦河遊船', url: 'https://maps.app.goo.gl/hgxoto3q99cgNbCQ6' },
+    ],
     cards: [
       {
         id: 'd4-vltava-cruise',
@@ -489,6 +503,10 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '防滑防水便鞋（溫泉長廊石板路常有水漬）',
       specialNotice: '入住五星級 Savoy Westend 頂級溫泉飯店，飯店附設豪華室內溫水泳池與三溫暖，可攜帶泳衣享受！',
     },
+    dayLocations: [
+      { name: '瑪麗安凱斯', url: 'https://maps.app.goo.gl/x9yN35Toj9KZzAtN8' },
+      { name: '卡羅維瓦利', url: 'https://maps.app.goo.gl/2bAULnTUy8MZ9aRW9' },
+    ],
     cards: [
       {
         id: 'd5-marianske',
@@ -608,6 +626,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '厚底避震防滑運動健走鞋（保護足底與腳踝）',
       specialNotice: '★ 重頭戲！今晚將換穿全套中世紀宮廷貴族/騎士古裝，建議裡面穿著貼身薄打底衣以便套裝。',
     },
+    dayLocations: [
+      { name: '巴德傑維契', url: 'https://maps.app.goo.gl/pxtVDpHsbMc3r7kE9' },
+    ],
     cards: [
       {
         id: 'd6-budejovice',
@@ -1095,6 +1116,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '皮質皮鞋、雅致平底或低跟女鞋（禁穿夾腳拖鞋、運動涼鞋）',
       specialNotice: '※ 重點儀容：晚間維也納音樂會盛會，男士請穿著長袖有領襯衫/西裝外套，女士著正式端莊洋裝或套裝配披肩。',
     },
+    dayLocations: [
+      { name: '維也納音樂會', url: 'https://maps.app.goo.gl/GcPwXekvKeidXuqg7' },
+    ],
     cards: [
       {
         id: 'd10-schonbrunn',
@@ -1236,6 +1260,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       luggageTime: '08:30 (大件行李放房門外或上遊覽車)',
       departureTime: '12:30 前往維也納國際機場',
     },
+    dayLocations: [
+      { name: '維也納機場', url: 'https://maps.app.goo.gl/5uX3w8rnZY54m7pF8' },
+    ],
     cards: [
       {
         id: 'd11-hundertwasser',
@@ -1274,6 +1301,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '13:00 - 15:30',
         locationName: 'Vienna International Airport Terminal 3',
         navQuery: 'Vienna International Airport, 1300 Schwechat, Austria',
+        mapsUrl: 'https://maps.app.goo.gl/5uX3w8rnZY54m7pF8',
         description: '專車抵達維也納國際機場，由隨團領隊張智惠小姐引導協助團員辦理退稅手續與託運行李。',
         story: '【退稅重要流程提醒】\n1. 託運行李退稅：於航空公司櫃台辦理 Check-in 秤重並掛上行李條，向地勤告知有退稅物品，將貼好行李條的行李提至海關窗口（Customs），出示退稅單、機票與護照讓海關蓋章後，行李直接送入輸送帶。\n2. 手提貴重物品退稅（如名牌包、名錶）：先通過安檢，至管制區內海關窗口出示物品、收據並蓋章。\n3. 蓋妥印章後至 Global Blue / Planet 免稅退款窗口領取現金或投遞信箱退信用卡。',
         tips: [
@@ -1333,6 +1361,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       shoes: '舒適健走鞋',
       specialNotice: '攜帶護照與機票存根以備入境查驗。',
     },
+    dayLocations: [
+      { name: '桃園機場第二航廈', url: 'https://maps.app.goo.gl/MvqREjMHAeJvAWSt8' },
+    ],
     cards: [
       {
         id: 'd12-arrival-tpe',

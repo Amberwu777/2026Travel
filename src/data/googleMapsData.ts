@@ -723,7 +723,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 49.474854,
     "lng": 14.1682133,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E4%BC%8F%E7%88%BE%E5%A1%94%E7%93%A6%E6%B2%B3"
+    "mapsUrl": "https://maps.app.goo.gl/hgxoto3q99cgNbCQ6"
   },
   {
     "id": "gmap-53",

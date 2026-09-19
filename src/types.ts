@@ -70,6 +70,7 @@ export interface ItineraryDay {
   weather: DayWeather;
   outfit: DayOutfit;
   scheduleMeta?: DayScheduleMeta;
+  dayLocations?: Array<{ name: string; url: string }>;
   cards: ItineraryCard[];
 }
 
