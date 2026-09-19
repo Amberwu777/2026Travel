@@ -751,7 +751,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 49.1841698,
     "lng": 15.4538014,
-    "mapsUrl": "https://maps.app.goo.gl/VRyEwG6tKXeyoGuh8"
+    "mapsUrl": "https://maps.app.goo.gl/t7oiNWpeiao7DynQ7"
   },
   {
     "id": "gmap-55",
@@ -765,7 +765,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 50.2318521,
     "lng": 12.871961599999999,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E5%8D%A1%E7%BE%85%E7%B6%AD%E7%93%A6%E5%88%A9"
+    "mapsUrl": "https://maps.app.goo.gl/2bAULnTUy8MZ9aRW9"
   },
   {
     "id": "gmap-56",
@@ -835,7 +835,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 48.9747663,
     "lng": 14.4740272,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=N%C3%A1m.%20P%C5%99emysla%20Otakara%20II"
+    "mapsUrl": "https://maps.app.goo.gl/pxtVDpHsbMc3r7kE9"
   },
   {
     "id": "gmap-61",
@@ -849,7 +849,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 48.9756578,
     "lng": 14.480255,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E5%82%91%E6%96%AF%E5%87%B1%E5%B8%83%E6%8F%90%E7%B4%84%E7%B6%AD%E6%AC%A1"
+    "mapsUrl": "https://maps.app.goo.gl/pxtVDpHsbMc3r7kE9"
   },
   {
     "id": "gmap-62",
@@ -863,7 +863,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 49.964598599999995,
     "lng": 12.7011977,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E7%91%AA%E9%BA%97%E4%BA%9E%E6%BA%AB%E6%B3%89%E5%B8%82"
+    "mapsUrl": "https://maps.app.goo.gl/x9yN35Toj9KZzAtN8"
   },
   {
     "id": "gmap-63",
@@ -933,7 +933,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 50.092049499999995,
     "lng": 14.4040813,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Golden%20Lane"
+    "mapsUrl": "https://maps.app.goo.gl/uoPj2mnUaJSTdD496"
   },
   {
     "id": "gmap-68",
@@ -975,7 +975,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 50.086477099999996,
     "lng": 14.4114366,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%E6%9F%A5%E7%90%86%E5%A4%A7%E6%A9%8B"
+    "mapsUrl": "https://maps.app.goo.gl/RnNBptQxQvgPLLTNA"
   },
   {
     "id": "gmap-71",

@@ -132,6 +132,20 @@ export default function App() {
     }
   };
 
+  const handleSelectDay = (day: number, scrollToTop = true) => {
+    setSelectedDay(day);
+    if (scrollToTop) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof document !== 'undefined') {
+        document.documentElement?.scrollTo({ top: 0, behavior: 'smooth' });
+        document.body?.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 50);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#F5F3EF] text-[#2C2A29] flex flex-col items-center">
       {/* Mobile-First Frame Container (Max Width centered for tablet/desktop) */}
@@ -186,7 +200,7 @@ export default function App() {
           {activeMainTab === 'itinerary' && (
             <div className="space-y-4 pb-20">
               {/* Day Selector Pill Bar */}
-              <DaySelector selectedDay={selectedDay} onSelectDay={setSelectedDay} />
+              <DaySelector selectedDay={selectedDay} onSelectDay={(day) => handleSelectDay(day, true)} />
 
               <div className="px-4 space-y-3.5">
                 {/* Day Header Banner */}
@@ -206,7 +220,7 @@ export default function App() {
                           </span>
                         ) : (
                           <button
-                            onClick={() => setSelectedDay(getTodayDayNumber())}
+                            onClick={() => handleSelectDay(getTodayDayNumber(), true)}
                             className="text-[10.5px] font-medium px-1.5 py-0.5 rounded bg-[#ECE5DA] text-[#6E553F] hover:bg-[#DFD5C6] transition-colors"
                             title="快速跳轉回今日行程"
                           >
@@ -294,7 +308,7 @@ export default function App() {
                         {otherDayMatches.map((m) => (
                           <button
                             key={m.dayNumber}
-                            onClick={() => setSelectedDay(m.dayNumber)}
+                            onClick={() => handleSelectDay(m.dayNumber, true)}
                             className="px-2 py-0.5 rounded-lg bg-[#EFE8DC] hover:bg-[#E2D6C5] text-[#4A433A] font-medium text-[11px] border border-[#E0D5C3] transition-all"
                           >
                             Day {m.dayNumber} {m.city.split('/')[0]} ({m.count}處)
@@ -420,8 +434,8 @@ export default function App() {
                 <div className="flex items-center justify-between pt-2 pb-6">
                   <button
                     disabled={selectedDay <= 1}
-                    onClick={() => setSelectedDay(selectedDay - 1)}
-                    className="px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#E2DBD0] text-xs font-medium text-[#4A433A] disabled:opacity-30 disabled:pointer-events-none hover:bg-[#EFE9DF] transition-colors"
+                    onClick={() => handleSelectDay(selectedDay - 1, true)}
+                    className="px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#E2DBD0] text-xs font-medium text-[#4A433A] disabled:opacity-30 disabled:pointer-events-none hover:bg-[#EFE9DF] transition-colors active:scale-95"
                   >
                     ← 前一天 (Day {selectedDay - 1})
                   </button>
@@ -432,8 +446,8 @@ export default function App() {
 
                   <button
                     disabled={selectedDay >= 12}
-                    onClick={() => setSelectedDay(selectedDay + 1)}
-                    className="px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#E2DBD0] text-xs font-medium text-[#4A433A] disabled:opacity-30 disabled:pointer-events-none hover:bg-[#EFE9DF] transition-colors"
+                    onClick={() => handleSelectDay(selectedDay + 1, true)}
+                    className="px-3.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#E2DBD0] text-xs font-medium text-[#4A433A] disabled:opacity-30 disabled:pointer-events-none hover:bg-[#EFE9DF] transition-colors active:scale-95"
                   >
                     下一天 (Day {selectedDay + 1}) →
                   </button>
@@ -466,7 +480,7 @@ export default function App() {
           isOpen={isDailyCarryOpen} 
           onClose={() => setIsDailyCarryOpen(false)} 
           dayNumber={selectedDay}
-          onSelectDay={(day) => setSelectedDay(day)}
+          onSelectDay={(day) => handleSelectDay(day, true)}
         />
 
         {/* Bottom Navigation */}

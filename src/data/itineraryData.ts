@@ -44,6 +44,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '20:00 集合',
         locationName: '桃園國際機場 第二航廈',
         navQuery: 'Taiwan Taoyuan International Airport Terminal 2',
+        mapsUrl: 'https://maps.app.goo.gl/MvqREjMHAeJvAWSt8',
         description: '於長榮航空團體櫃台由隨團領隊張智惠小姐協助辦理登機手續、託運行李與發放證件。',
         story: '【行前啟程】帶著期待的心情出發！長榮航空 BR61 直飛航班中停曼谷加油後，直奔奧地利音樂之都維也納。',
         tips: [
@@ -63,6 +64,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '22:40 - 08:40+1 (約16小時)',
         locationName: '長榮航空 BR61 班機',
         navQuery: 'Vienna International Airport',
+        mapsUrl: 'https://maps.app.goo.gl/5uX3w8rnZY54m7pF8',
         description: '夜間自台北啟程，享受機上娛樂系統與星級美饌，一覺醒來即抵達音樂之都維也納。',
         story: '航程途中飛經泰國曼谷短暫停留技術過境，乘客無需提領大件行李，在機上放鬆調適時差。',
         highlights: {
@@ -111,7 +113,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '上午 11:30 - 14:00',
         locationName: 'Náměstí Zachariáše z Hradce, Telč',
         navQuery: 'Náměstí Zachariáše z Hradce, 588 56 Telč, Czechia',
-        mapsUrl: 'https://maps.app.goo.gl/VRyEwG6tKXeyoGuh8',
+        mapsUrl: 'https://maps.app.goo.gl/t7oiNWpeiao7DynQ7',
         distanceKm: 185,
         description: '有「彩色小鎮」之稱，沒有宏偉壯觀的教堂或城堡，只有尋常人家純樸典雅的建築，繪上五顏六色的童話色彩。因地理位置依水獨立，500年來完全未受戰亂破壞，宛若15世紀重現。',
         story: '【領隊私房典故】帖契在1530年曾經歷一場大火，當時的領主下令重建時，每家每戶的外牆必須採用文藝復興或巴洛克風格的「山形牆（Gable）」，並競相雕琢灰泥刮畫（Sgraffito），因而造就今天整排彷彿薑餅屋般爭奇鬥豔的世界文化遺產廣場！',
@@ -147,6 +149,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '16:30 - 18:30',
         locationName: 'Karlův most, Praha',
         navQuery: 'Karlův most, 110 00 Praha 1, Czechia',
+        mapsUrl: 'https://maps.app.goo.gl/RnNBptQxQvgPLLTNA',
         distanceKm: 150,
         description: '連結舊城區、城堡區與小城區的要道，全長約516米。橋上矗立30座精美聖人巴洛克雕像，各具傳奇典故。橋上匯聚街頭藝人、手繪畫家與珠寶攤販，浪漫無比。',
         story: '【導遊必看亮點】建於1357年神聖羅馬帝國查理四世時期。傳說砌橋時灰泥中混入了生雞蛋與葡萄酒以確保堅韌！橋中央第8號聖人「聖約翰·內波穆克（St. John of Nepomuk）」雕像下方，有一塊被無數旅人撫摸得金光閃閃的浮雕銅牌，傳說右手觸摸銅牌並心中許願，願望將會實現並能重返布拉格！',
@@ -267,6 +270,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '11:45 - 12:45',
         locationName: 'Zlatá ulička u Daliborky, Praha',
         navQuery: 'Golden Lane, Zlatá ulička u Daliborky, Praha',
+        mapsUrl: 'https://maps.app.goo.gl/uoPj2mnUaJSTdD496',
         description: '宛如童話書插畫的色彩斑斕低矮小木屋，曾是16世紀國王衛兵與煉金術士居住的聚落。其中藍色的第22號小屋正是捷克文學巨擘卡夫卡（Franz Kafka）寫下經典名作《鄉村醫生》的閉關寓所。',
         story: '相傳神聖羅馬帝國魯道夫二世篤信煉金術，召集歐洲術士於此企圖提煉黃金與長生不老藥，巷名因而得名。如今22號改為卡夫卡紀念書店與文創周邊店。',
         highlights: {
@@ -384,6 +388,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '09:30 - 11:00',
         locationName: 'Dvořákovo nábřeží, Praha 1 碼頭',
         navQuery: 'Prague River Cruises, Dvořákovo nábř., Praha',
+        mapsUrl: 'https://maps.app.goo.gl/hgxoto3q99cgNbCQ6',
         description: '捷克最大最長的河流，猶如國家的母親之河。特別安排登船遊弋於百塔之城心臟，遠眺查理大橋雙拱水影、城堡山連綿紅屋頂與國家劇院金色穹頂。',
         story: '【國民樂派交響樂】捷克音樂之父史麥塔納所創作的《我的祖國》第二樂章正是著名的《伏爾塔瓦河》，音符生動描繪了兩股清泉匯流成洶湧大河，穿越布拉格城堡的史詩波瀾。',
         highlights: {
@@ -493,6 +498,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '10:30 - 12:30',
         locationName: 'Kolonáda Maxima Gorkého, Mariánské Lázně',
         navQuery: 'Kolonáda Maxima Gorkého, 353 01 Mariánské Lázně',
+        mapsUrl: 'https://maps.app.goo.gl/x9yN35Toj9KZzAtN8',
         distanceKm: 172,
         description: '坐落於蔥鬱森林山谷中的溫泉新興區，擁有全歐洲最長、最精緻的卡斯楚式鑄鐵溫泉柱廊（長達119公尺）。相較於卡羅維瓦利，這裡更加靜謐優雅，文豪歌德與蕭邦皆曾在此墜入愛河。',
         story: '柱廊前方著名的「音樂噴泉（Singing Fountain）」每逢奇數整點會隨古典交響樂（如史麥塔納、德弗札克名曲）翩翩起舞，水柱水霧在陽光折射下如同彩虹芭蕾。',
@@ -522,6 +528,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '14:45 - 17:30',
         locationName: 'Mlýnská kolonáda, Karlovy Vary',
         navQuery: 'Mill Colonnade, Mlýnské nábř., 360 01 Karlovy Vary',
+        mapsUrl: 'https://maps.app.goo.gl/2bAULnTUy8MZ9aRW9',
         distanceKm: 55,
         description: '相傳14世紀神聖羅馬帝國查理四世狩獵鹿群時意外發現溫泉。這裡有別於亞洲「泡溫泉」，而是以「喝溫泉」聞名！鎮上有15座各具療效的溫泉出水口，水溫自30°C至72°C不等，富含豐富礦物質。',
         story: '【品飲溫泉學問】喝溫泉必須使用當地特製的「溫泉杯（Lázeňský pohárek）」！杯柄巧妙設計成吸管狀，能讓高溫泉水在經過扁平管壁時降溫，同時避免溫泉中的鐵質氧化牙齒，一邊漫步磨坊柱廊（Mill Colonnade）一邊啜飲，宛如中古貴族。',
@@ -610,6 +617,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '11:00 - 12:30',
         locationName: 'Náměstí Přemysla Otakara II.',
         navQuery: 'Náměstí Přemysla Otakara II., České Budějovice',
+        mapsUrl: 'https://maps.app.goo.gl/pxtVDpHsbMc3r7kE9',
         distanceKm: 276,
         description: '迷人的中世紀老城，曾屬神聖羅馬帝國德國文化圈，擁有全捷克最大的正方形市政廣場（長寬各133公尺）。廣場四周環繞著粉藍、粉紅巴洛克式拱廊建築，中央矗立大力士參孫噴泉。',
         story: '【真假百威啤酒爭霸】美國安海斯-布希百威啤酒（Budweiser）的名字正是盜用自這裡！自1265年波希米亞國王賦予該城釀酒特權以來，這座城市的「Budweiser Bier」已有近800年歷史，口感遠比美國版本醇厚回甘。',
@@ -1178,6 +1186,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '20:15 - 22:00',
         locationName: 'Wiener Kursalon 或 Palais Auersperg 音樂廳',
         navQuery: 'Kursalon Hübner, Johannesgasse 33, 1010 Wien',
+        mapsUrl: 'https://maps.app.goo.gl/GcPwXekvKeidXuqg7',
         description: '特別安排在維也納著名歷史宮廷音樂廳，由專業管弦樂團、歌劇聲樂家與芭蕾舞者攜手演出莫札特著名歌劇選段（如《費加洛婚禮》、《魔笛》）以及圓舞曲之王約翰·史特勞斯的《藍色多瑙河》、《拉德茨基進行曲》。',
         story: '【拍手同歡的終曲】演出最後一曲必定是震撼全場的《拉德茨基進行曲（Radetzky March）》！指揮家會轉過身來，引導全場觀眾隨著鼓點強弱打節拍鼓掌，歡騰氣氛將整個奧捷典藏之旅推向最浪漫高潮！',
         tips: [
@@ -1284,6 +1293,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '16:00 起飛 (飛行約15小時25分)',
         locationName: '維也納國際機場 登機門',
         navQuery: 'Vienna International Airport, Austria',
+        mapsUrl: 'https://maps.app.goo.gl/5uX3w8rnZY54m7pF8',
         description: '告別美麗的奧地利與捷克，搭乘豪華客機踏上歸途，在萬里晴空中回味12天的浪漫回憶。',
         highlights: {
           reservationCode: 'BR62 VIE-TPE (16:00-13:25+1)',
@@ -1332,6 +1342,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '13:25 抵達',
         locationName: '台灣桃園國際機場 第二航廈',
         navQuery: 'Taiwan Taoyuan International Airport Terminal 2',
+        mapsUrl: 'https://maps.app.goo.gl/MvqREjMHAeJvAWSt8',
         description: '班機抵達桃園國際機場，領取託運行李，與隨團領隊及各位貴賓互道珍重再見，結束難忘美好的奧地利捷克湖區典藏12日浪漫之旅。',
         story: '【入境防疫重要提醒】\n1. 凡攜帶肉類製品（肉乾、肉鬆、香腸、火腿、含肉生鮮或真空包裝熟肉等），違者處新台幣1萬至100萬元罰鍰！\n2. 新鮮水果、生乳製品、土壤植株亦嚴禁攜帶入境。\n3. 免稅菸酒上限：年滿20歲成人酒類1.5公升、捲菸200支。',
         tips: [
