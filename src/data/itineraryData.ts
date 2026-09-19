@@ -111,6 +111,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
         timeSlot: '上午 11:30 - 14:00',
         locationName: 'Náměstí Zachariáše z Hradce, Telč',
         navQuery: 'Náměstí Zachariáše z Hradce, 588 56 Telč, Czechia',
+        mapsUrl: 'https://maps.app.goo.gl/VRyEwG6tKXeyoGuh8',
         distanceKm: 185,
         description: '有「彩色小鎮」之稱，沒有宏偉壯觀的教堂或城堡，只有尋常人家純樸典雅的建築，繪上五顏六色的童話色彩。因地理位置依水獨立，500年來完全未受戰亂破壞，宛若15世紀重現。',
         story: '【領隊私房典故】帖契在1530年曾經歷一場大火，當時的領主下令重建時，每家每戶的外牆必須採用文藝復興或巴洛克風格的「山形牆（Gable）」，並競相雕琢灰泥刮畫（Sgraffito），因而造就今天整排彷彿薑餅屋般爭奇鬥豔的世界文化遺產廣場！',

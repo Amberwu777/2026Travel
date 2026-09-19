@@ -20,7 +20,9 @@ import {
   ChevronDown, 
   ChevronUp,
   RotateCcw,
-  Store
+  Store,
+  Utensils,
+  Star
 } from 'lucide-react';
 import { SouvenirItem, PersonalMemo } from '../types';
 import { 
@@ -34,7 +36,19 @@ const SOUVENIR_STORAGE_KEY = 'austria_czech_souvenirs_v1';
 const MEMO_STORAGE_KEY = 'austria_czech_memos_v1';
 
 export const NotesAndSouvenirsView: React.FC = () => {
-  const [activeSubTab, setActiveSubTab] = useState<'souvenirs' | 'memos'>('souvenirs');
+  const [activeSubTab, setActiveSubTab] = useState<'souvenirs' | 'memos' | 'meals'>('souvenirs');
+
+  // ---------- MEAL NOTES STATE (from daily itinerary) ----------
+  const [mealNotesIndex, setMealNotesIndex] = useState<Record<string, any>>({});
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('travel_all_meal_notes_index_v1');
+      if (raw) setMealNotesIndex(JSON.parse(raw));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [activeSubTab]);
 
   // ---------- SOUVENIRS STATE ----------
   const [souvenirs, setSouvenirs] = useState<SouvenirItem[]>(() => {
@@ -367,29 +381,41 @@ export const NotesAndSouvenirsView: React.FC = () => {
         </div>
 
         {/* SubTab Toggle Bar */}
-        <div className="grid grid-cols-2 gap-1.5 mt-3.5 p-1 bg-[#F1EBE1] rounded-xl border border-[#E5DFD4]">
+        <div className="grid grid-cols-3 gap-1 mt-3.5 p-1 bg-[#F1EBE1] rounded-xl border border-[#E5DFD4]">
           <button
             onClick={() => setActiveSubTab('souvenirs')}
-            className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+            className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
               activeSubTab === 'souvenirs'
                 ? 'bg-[#FFFFFF] text-[#8C5D38] shadow-xs'
                 : 'text-[#70675D] hover:text-[#2C2A29]'
             }`}
           >
-            <Gift className="w-4 h-4" />
-            <span>伴手禮 ({souvenirs.length})</span>
+            <Gift className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">伴手禮 ({souvenirs.length})</span>
           </button>
 
           <button
             onClick={() => setActiveSubTab('memos')}
-            className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+            className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
               activeSubTab === 'memos'
                 ? 'bg-[#FFFFFF] text-[#2E6B47] shadow-xs'
                 : 'text-[#70675D] hover:text-[#2C2A29]'
             }`}
           >
-            <FileText className="w-4 h-4" />
-            <span>備忘錄 ({memos.length})</span>
+            <FileText className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">備忘錄 ({memos.length})</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSubTab('meals')}
+            className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
+              activeSubTab === 'meals'
+                ? 'bg-[#FFFFFF] text-[#A8582C] shadow-xs'
+                : 'text-[#70675D] hover:text-[#2C2A29]'
+            }`}
+          >
+            <Utensils className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">用餐筆記 ({Object.keys(mealNotesIndex).length})</span>
           </button>
         </div>
       </div>
@@ -1007,6 +1033,106 @@ export const NotesAndSouvenirsView: React.FC = () => {
               ))
             )}
           </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 3. 用餐筆記總覽 TAB                                                       */}
+      {/* ========================================================================= */}
+      {activeSubTab === 'meals' && (
+        <div className="space-y-3.5 animate-in fade-in duration-200">
+          <div className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-4 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Utensils className="w-4 h-4 text-[#8C5D38]" />
+                <h3 className="text-xs font-bold text-[#2C2A29]">
+                  旅程用餐筆記一覽 ({Object.keys(mealNotesIndex).length} 筆)
+                </h3>
+              </div>
+              <span className="text-[11px] text-[#7A7165]">
+                可在「每日行程」午/晚餐卡片隨時新增或修改
+              </span>
+            </div>
+          </div>
+
+          {Object.keys(mealNotesIndex).length === 0 ? (
+            <div className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-8 text-center">
+              <div className="w-12 h-12 rounded-2xl bg-[#F0EBE0] text-[#8C5D38] flex items-center justify-center mx-auto mb-3">
+                <Utensils className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-[#2C2A29] mb-1">
+                尚無任何用餐筆記
+              </h4>
+              <p className="text-xs text-[#7A7165] max-w-sm mx-auto leading-relaxed">
+                前往「行程」分頁，在每天的午餐與晚餐卡片中，點擊「自行記錄用餐筆記」即可記錄餐點心得、評分與花費！
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {Object.entries(mealNotesIndex).map(([cardId, noteItem]: [string, any]) => (
+                <div
+                  key={cardId}
+                  className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-4 shadow-sm space-y-2.5"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#EFE4D2] text-[#78542C] inline-block mb-1">
+                        🍴 {noteItem.title || '用餐記錄'}
+                      </span>
+                      {noteItem.rating > 0 && (
+                        <div className="flex items-center gap-0.5 text-[#D97706]">
+                          {[1, 2, 3, 4, 5].map((star: number) => (
+                            <Star
+                              key={star}
+                              className={`w-3 h-3 ${star <= noteItem.rating ? 'fill-[#D97706]' : 'text-[#D1C9BE]'}`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        const text = `【${noteItem.title}】\n${noteItem.content || ''}\n${noteItem.tags?.join('、') || ''}`;
+                        navigator.clipboard.writeText(text);
+                        triggerCopyNotice('用餐筆記已複製！');
+                      }}
+                      className="p-1.5 rounded-lg bg-[#EFE9DF] hover:bg-[#E4DDD1] text-[#4A433A] text-xs flex items-center gap-1 transition-colors"
+                      title="複製筆記"
+                    >
+                      <Copy className="w-3.5 h-3.5 text-[#8C5D38]" />
+                      <span className="text-[11px]">複製</span>
+                    </button>
+                  </div>
+
+                  {noteItem.content && (
+                    <p className="text-xs text-[#3C3732] leading-relaxed whitespace-pre-wrap bg-[#F5EFE6] p-3 rounded-xl border border-[#EAE2D5]">
+                      {noteItem.content}
+                    </p>
+                  )}
+
+                  {noteItem.tags && noteItem.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
+                      {noteItem.tags.map((t: string, idx: number) => (
+                        <span
+                          key={idx}
+                          className="text-[10.5px] font-medium bg-[#EFE7DC] text-[#635240] px-2 py-0.5 rounded-md border border-[#E3D7C5]"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {noteItem.updatedAt && (
+                    <div className="text-[10px] text-[#91877B] text-right">
+                      記錄時間：{noteItem.updatedAt}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

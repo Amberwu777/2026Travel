@@ -751,7 +751,7 @@ export const GOOGLE_MAPS_PLACES: GoogleMapsPlace[] = [
     "shortAddress": "",
     "lat": 49.1841698,
     "lng": 15.4538014,
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Zacharias%20of%20Hradec%20Square"
+    "mapsUrl": "https://maps.app.goo.gl/VRyEwG6tKXeyoGuh8"
   },
   {
     "id": "gmap-55",

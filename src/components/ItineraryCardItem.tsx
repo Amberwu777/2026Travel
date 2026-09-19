@@ -14,10 +14,10 @@ import {
   ChevronUp, 
   Ticket, 
   Clock, 
-  Info,
-  Car
+  Info
 } from 'lucide-react';
 import { ItineraryCard, CardCategory } from '../types';
+import { MealNoteSection } from './MealNoteSection';
 
 interface ItineraryCardItemProps {
   card: ItineraryCard;
@@ -66,11 +66,26 @@ export const ItineraryCardItem: React.FC<ItineraryCardItemProps> = ({ card }) =>
   };
 
   const currentTheme = categoryConfig[card.category] || categoryConfig.spot;
+  const isMeal = card.category === 'restaurant';
 
-  const handleOpenNavigation = () => {
-    // Universal Google Maps navigation intent with destination
-    const destination = encodeURIComponent(card.navQuery || card.locationName);
-    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=driving`;
+  const hasVisibleHighlights = card.highlights && (
+    (!isMeal && ((card.highlights.mustEat?.length ?? 0) > 0 || (card.highlights.mustOrder?.length ?? 0) > 0)) ||
+    (card.highlights.mustBuy?.length ?? 0) > 0 ||
+    Boolean(card.highlights.reservationCode)
+  );
+
+  const handleOpenLocation = () => {
+    // Open exact Google Maps place pinpoint / location marker
+    if (card.mapsUrl) {
+      window.open(card.mapsUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    if (card.navQuery && (card.navQuery.startsWith('http://') || card.navQuery.startsWith('https://'))) {
+      window.open(card.navQuery, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    const query = encodeURIComponent(card.navQuery || card.locationName);
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
     window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -129,53 +144,61 @@ export const ItineraryCardItem: React.FC<ItineraryCardItemProps> = ({ card }) =>
         )}
       </div>
 
-      {/* Location & One-Tap Navigation Section */}
-      <div className="mt-3 bg-[#F2EDE4] border border-[#E5DFD4] rounded-xl p-2.5 flex items-center justify-between gap-2">
-        <div className="flex items-start gap-1.5 min-w-0">
-          <MapPin className="w-4 h-4 text-[#8C4A32] shrink-0 mt-0.5" />
-          <div className="min-w-0">
-            <div className="text-xs font-medium text-[#2E2A27] truncate">
-              {card.locationName}
-            </div>
-            <div className="text-[10px] text-[#7A7167] font-mono truncate">
-              {card.navQuery}
+      {/* Location & One-Tap Navigation Section (Hidden for meals/restaurants) */}
+      {!isMeal && (
+        <div className="mt-3 bg-[#F2EDE4] border border-[#E5DFD4] rounded-xl p-2.5 flex items-center justify-between gap-2">
+          <div className="flex items-start gap-1.5 min-w-0">
+            <MapPin className="w-4 h-4 text-[#8C4A32] shrink-0 mt-0.5" />
+            <div className="min-w-0">
+              <div className="text-xs font-medium text-[#2E2A27] truncate">
+                {card.locationName}
+              </div>
+              <div className="text-[10px] text-[#7A7167] font-mono truncate">
+                {card.navQuery}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Action Buttons: 導航按鈕 (Navigation) & Copy */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <button
-            id={`copy-btn-${card.id}`}
-            onClick={handleCopyLocation}
-            title="複製地址"
-            className="p-1.5 rounded-lg bg-[#EAE3D6] text-[#554E46] hover:bg-[#E0D8C8] active:scale-95 transition-all text-[11px] flex items-center"
-          >
-            {copied ? <Check className="w-3.5 h-3.5 text-[#2E6B45]" /> : <Copy className="w-3.5 h-3.5" />}
-          </button>
+          {/* Action Buttons: 景點定位 (Google Maps Pinpoint) & Copy */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              id={`copy-btn-${card.id}`}
+              onClick={handleCopyLocation}
+              title="複製地址"
+              className="p-1.5 rounded-lg bg-[#EAE3D6] text-[#554E46] hover:bg-[#E0D8C8] active:scale-95 transition-all text-[11px] flex items-center"
+            >
+              {copied ? <Check className="w-3.5 h-3.5 text-[#2E6B45]" /> : <Copy className="w-3.5 h-3.5" />}
+            </button>
 
-          <button
-            id={`nav-btn-${card.id}`}
-            onClick={handleOpenNavigation}
-            className="px-2.5 py-1.5 rounded-lg bg-[#2C2A29] text-[#FAF8F5] hover:bg-[#433E3B] active:scale-95 transition-all text-xs font-medium flex items-center gap-1 shadow-sm"
-          >
-            <Car className="w-3.5 h-3.5 text-[#F2EDE4]" />
-            <span>自駕導航</span>
-            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
-          </button>
+            <button
+              id={`nav-btn-${card.id}`}
+              onClick={handleOpenLocation}
+              title="在 Google Maps 查看該景點定位點"
+              className="px-2.5 py-1.5 rounded-lg bg-[#2C2A29] text-[#FAF8F5] hover:bg-[#433E3B] active:scale-95 transition-all text-xs font-medium flex items-center gap-1 shadow-sm shrink-0"
+            >
+              <MapPin className="w-3.5 h-3.5 text-[#F2EDE4]" />
+              <span>景點定位</span>
+              <ExternalLink className="w-2.5 h-2.5 opacity-70" />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Description */}
       <p className="mt-2.5 text-xs text-[#4A453F] leading-relaxed">
         {card.description}
       </p>
 
-      {/* Tour Guide Highlighting Tags (必吃美食、必點菜單、必買伴手禮、重要預約代號) */}
-      {card.highlights && (
+      {/* Self-Recorded Meal Note (自行記錄做筆記 - for lunch and dinner meals) */}
+      {isMeal && (
+        <MealNoteSection cardId={card.id} mealTitle={card.title} />
+      )}
+
+      {/* Tour Guide Highlighting Tags (必吃美食、必點菜單 for non-meals only; 必買伴手禮、重要預約代號) */}
+      {hasVisibleHighlights && card.highlights && (
         <div className="mt-3.5 pt-3 border-t border-[#EDE7DC] space-y-2">
-          {/* 🏷️ 必吃美食 */}
-          {card.highlights.mustEat && card.highlights.mustEat.length > 0 && (
+          {/* 🏷️ 必吃美食 (非正餐行程時顯示) */}
+          {!isMeal && card.highlights.mustEat && card.highlights.mustEat.length > 0 && (
             <div className="flex items-start gap-2">
               <span className="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-[#FAECE8] text-[#B83E28] border border-[#F2D0C7] tracking-wider">
                 🏷️ 必吃美食
@@ -190,8 +213,8 @@ export const ItineraryCardItem: React.FC<ItineraryCardItemProps> = ({ card }) =>
             </div>
           )}
 
-          {/* 🍽️ 必點菜單 */}
-          {card.highlights.mustOrder && card.highlights.mustOrder.length > 0 && (
+          {/* 🍽️ 必點菜單 (非正餐行程時顯示) */}
+          {!isMeal && card.highlights.mustOrder && card.highlights.mustOrder.length > 0 && (
             <div className="flex items-start gap-2">
               <span className="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-[#FBF2E6] text-[#A86418] border border-[#F5DCBC] tracking-wider">
                 🍽️ 必點菜單

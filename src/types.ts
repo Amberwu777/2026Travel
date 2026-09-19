@@ -16,6 +16,7 @@ export interface ItineraryCard {
   timeSlot?: string;
   locationName: string;
   navQuery: string; // Used for 1-tap Google Maps Navigation
+  mapsUrl?: string; // Direct Google Maps place link / short link
   description: string;
   story?: string;   // 景點典故與導遊私房故事
   tips?: string[];

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Compass, 
   MapPin, 
@@ -29,15 +29,33 @@ import { DailyCarryModal } from './components/DailyCarryModal';
 import { BottomNav, MainTabType } from './components/BottomNav';
 import { DualClock } from './components/DualClock';
 import { LineHeaderButton } from './components/LineGroupButton';
+import { getTodayDayNumber, isTodayDay } from './utils/dateUtils';
 import appIcon from './assets/images/app-icon.png';
 
 export default function App() {
   const [activeMainTab, setActiveMainTab] = useState<MainTabType>('itinerary');
-  const [selectedDay, setSelectedDay] = useState<number>(2); // Default to Day 2 (first active day in Europe)
+  const [selectedDay, setSelectedDay] = useState<number>(() => getTodayDayNumber());
   const [selectedCategory, setSelectedCategory] = useState<CardCategory | 'all' | 'highlights'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [copiedShare, setCopiedShare] = useState(false);
   const [isDailyCarryOpen, setIsDailyCarryOpen] = useState(false);
+
+  // Auto-detect and switch to today's day whenever entering or returning to the app
+  useEffect(() => {
+    const handleReEnterApp = () => {
+      if (document.visibilityState === 'visible') {
+        const todayDay = getTodayDayNumber();
+        setSelectedDay(todayDay);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleReEnterApp);
+    window.addEventListener('focus', handleReEnterApp);
+    return () => {
+      document.removeEventListener('visibilitychange', handleReEnterApp);
+      window.removeEventListener('focus', handleReEnterApp);
+    };
+  }, []);
 
   const currentDayData = ITINERARY_DAYS.find((d) => d.dayNumber === selectedDay) || ITINERARY_DAYS[0];
 
@@ -175,13 +193,26 @@ export default function App() {
                 <div className="bg-[#FAF8F5] border border-[#E8E3DA] rounded-2xl p-4 shadow-sm">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#2C2A29] text-[#FAF8F5]">
                           DAY {currentDayData.dayNumber}
                         </span>
                         <span className="text-xs text-[#70675D] font-mono">
                           {currentDayData.date} ({currentDayData.dayOfWeek})
                         </span>
+                        {isTodayDay(currentDayData.dayNumber) ? (
+                          <span className="text-[10.5px] font-bold px-1.5 py-0.5 rounded bg-[#8C5D38] text-white tracking-wide shadow-2xs">
+                            今日行程
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => setSelectedDay(getTodayDayNumber())}
+                            className="text-[10.5px] font-medium px-1.5 py-0.5 rounded bg-[#ECE5DA] text-[#6E553F] hover:bg-[#DFD5C6] transition-colors"
+                            title="快速跳轉回今日行程"
+                          >
+                            跳回今天
+                          </button>
+                        )}
                       </div>
                       <h2 className="text-base font-bold text-[#2C2A29] mt-1.5 leading-snug">
                         {currentDayData.routeTitle}
